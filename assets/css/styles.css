@@ -470,6 +470,12 @@ footer{
         font-size: 0.9rem;
         padding: 0.5rem 1.25rem;
     }
+
+    /*seção Contato*/
+    .contact_container{
+        grid-template-columns: 1fr; /* Muda para uma coluna */
+        padding: 2rem 1rem; 
+    }
 }
 /* Página Sucess */
 
