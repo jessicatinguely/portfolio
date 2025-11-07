@@ -68,7 +68,7 @@ button {
 :root[data-theme="dark"] {
     color-scheme: dark;
     --bg: #0f0f14;
-    --surface: #151821;
+    --surface: #383b46;
     --text: #f5e9f1;
     --muted: #c9c3cc;
     --white: var(--bg);
@@ -400,7 +400,7 @@ button {
     width: 4rem;
     height: 4rem;
     padding: .75rem;
-    background: var(--muted);
+    background: var(--surface);
     border-radius: .5rem;
     transition: all .3s ease
 }
