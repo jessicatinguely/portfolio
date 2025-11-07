@@ -137,13 +137,13 @@ formulario.addEventListener('submit', function (event) {
 // Chamar a função getAPIGithub()
 getApiGithub();
 
-// ====== Toggle de Tema (lua/sol) ======
+//  Toggle de Tema (lua/sol) 
 const root = document.documentElement;
 const btnToggle = document.getElementById('themeToggle');
 const icon = document.getElementById('themeIcon');
 
 if (btnToggle && icon) {
-    // 🌙 lua “gordinha”
+    // lua “gordinha”
     const iconMoon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 0 1 11.21 3a.75.75 0 0 0-.92.92A7.5 7.5 0 1 0 20.08 12.7a.75.75 0 0 0 .92-.92Z"/></svg>`;
     // ☀️ sol com raios
     const iconSun = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>`;
