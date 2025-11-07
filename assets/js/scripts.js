@@ -10,11 +10,11 @@ const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 // Função para buscar os dados no Github
 async function getApiGithub() {
 
-    try{
+    try {
 
         // Passo 01: Fazer uma requisição GET para a API do Github
         const dadosPerfil = await fetch('https://api.github.com/users/jessicatinguely'); // Substitua 'seu-usuario-github' pelo seu nome de usuário do GitHub
-        
+
         // Passo 02: Converter a resposta da API para JSON
         const perfilJson = await dadosPerfil.json();
 
@@ -32,16 +32,15 @@ async function getApiGithub() {
             <!-- CONTEÚDO DO PERFIL -->
             <article class="about_content">
                     <h2>🌸 Sobre Mim</h2>
-                    <p>Hoje, sou estudante de <strong>Análise e Desenvolvimento de Sistemas na FIAP</strong> e aluna do
-                        <strong>Bootcamp Full Stack Java da Generation Brasil</strong>. Já desenvolvi projetos em
-                        <strong>Java, Spring Boot, HTML, CSS e Bootstrap</strong>, criando desde <strong>APIs REST</strong>
-                        até <strong>interfaces web responsivas</strong>.</p>
+                    <p>Estudante de <strong>Análise e Desenvolvimento de Sistemas (FIAP)</strong> e aluna do <strong>Bootcamp Full Stack Java (Generation Brasil)</strong>. Entrei na tecnologia por curiosidade e fiquei por propósito.</p>
 
-                    <p>Mais do que código, gosto de pensar em <strong>experiências</strong>.
-                        Acredito que tecnologia boa é aquela que simplifica, conecta e inspira, e é isso que busco em cada linha que escrevo.</p>
+                    <p>Gosto de transformar ideias em algo que as pessoas realmente usam. Já desenvolvi projetos com
+                    <strong>Java</strong>, <strong>Spring Boot</strong>, <strong>HTML</strong>, <strong>CSS</strong> e <strong>Bootstrap</strong> — de <strong>APIs REST</strong> a <strong>interfaces responsivas</strong>. Mais do que código, me movem problemas bem resolvidos, experiências simples e aquele “uau” de quem está do outro lado da tela.</p>
 
-                    <p>✨ Aqui no blog compartilho meus projetos, aprendizados e reflexões sobre essa jornada de reinvenção,
-                        entre café, curiosidade e muito código.</p>
+                    <p>Acredito que tecnologia boa é a que <em>simplifica, conecta e cuida</em>. É isso que busco em cada projeto: clareza, respeito ao tempo das pessoas e um toque de carinho nos detalhes.</p>
+
+                    <p>✨ Aqui compartilho meus <strong>projetos</strong>, <strong>aprendizados</strong> e a minha jornada de reinvenção, entre <strong>café</strong>, <strong>curiosidade</strong> e <strong>muito código</strong>.</p>
+
 
                     <div class="about_stats">
                     <a href="${perfilJson.html_url}" target="_blank" class="botao">Ver GitHub</a>
@@ -73,7 +72,7 @@ async function getApiGithub() {
 }
 
 // Função de envio e validação do formulário
-formulario.addEventListener('submit', function(event) {
+formulario.addEventListener('submit', function (event) {
 
     // Impede o envio do formulário até a validação
     event.preventDefault();
@@ -98,7 +97,7 @@ formulario.addEventListener('submit', function(event) {
 
     // Validação do campo email
     const campoEmail = document.querySelector('#email');
-    const txtEmail= document.querySelector('#txtEmail');
+    const txtEmail = document.querySelector('#txtEmail');
 
     // Validar o email usando a expressão regular
     if (!emailRegex.test(campoEmail.value)) {
@@ -132,8 +131,35 @@ formulario.addEventListener('submit', function(event) {
 
     // Se passou por todas as validações, enviar o formulário
     formulario.submit();
-
-});
+}
+);
 
 // Chamar a função getAPIGithub()
 getApiGithub();
+
+// ====== Toggle de Tema (lua/sol) ======
+const root = document.documentElement;
+const btnToggle = document.getElementById('themeToggle');
+const icon = document.getElementById('themeIcon');
+
+if (btnToggle && icon) {
+    // 🌙 lua “gordinha”
+    const iconMoon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 0 1 11.21 3a.75.75 0 0 0-.92.92A7.5 7.5 0 1 0 20.08 12.7a.75.75 0 0 0 .92-.92Z"/></svg>`;
+    // ☀️ sol com raios
+    const iconSun = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>`;
+
+    // padrão: escuro (respeita a escolha salva, se houver)
+    (function initTheme() {
+        const saved = localStorage.getItem('theme');
+        root.setAttribute('data-theme', (saved === 'dark' || saved === 'light') ? saved : 'dark');
+        icon.innerHTML = root.getAttribute('data-theme') === 'dark' ? iconSun : iconMoon;
+    })();
+
+    btnToggle.addEventListener('click', () => {
+        const nowDark = root.getAttribute('data-theme') !== 'dark';
+        root.setAttribute('data-theme', nowDark ? 'dark' : 'light');
+        localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+        icon.innerHTML = nowDark ? iconSun : iconMoon;
+    });
+}
+
