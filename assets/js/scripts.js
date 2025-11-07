@@ -1,6 +1,12 @@
 // Selecionar a seção about
 const about = document.querySelector('#about'); // Seleciona o elemento com o ID 'about'
 
+// Selecionar o formulário
+const formulario = document.querySelector('#formulario');
+
+// Expressão regular para validar o email
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 // Função para buscar os dados no Github
 async function getApiGithub() {
 
@@ -65,6 +71,69 @@ async function getApiGithub() {
         console.error(error);
     }
 }
+
+// Função de envio e validação do formulário
+formulario.addEventListener('submit', function(event) {
+
+    // Impede o envio do formulário até a validação
+    event.preventDefault();
+
+    // Validacão do campo nome
+    const campoNome = document.querySelector('#nome');
+    const txtNome = document.querySelector('#txtNome');
+
+    // Nome precisa ter pelo menos 3 caracteres
+    if (campoNome.value.length < 3) {
+        txtNome.innerHTML = 'O nome deve ter pelo menos 3 caracteres.';
+        campoNome.focus();
+        txtNome.style.color = 'red'; // Mensagem de erro em vermelho
+        campoNome.style.border = '2px solid red'; // Destaque em vermelho para indicar erro
+        return; // Sai da função se a validação falhar
+    } else {
+        txtNome.innerHTML = 'Nome válido!';
+        txtNome.style.color = 'green'; // Mensagem de sucesso em verde
+        campoNome.style.border = '2px solid green'; // Destaque em verde para indicar sucesso
+    }
+
+
+    // Validação do campo email
+    const campoEmail = document.querySelector('#email');
+    const txtEmail= document.querySelector('#txtEmail');
+
+    // Validar o email usando a expressão regular
+    if (!emailRegex.test(campoEmail.value)) {
+        txtEmail.innerHTML = 'Digite um e-mail válido!';
+        campoEmail.focus();
+        txtEmail.style.color = 'red';
+        campoEmail.style.border = '2px solid red';
+        return; // falhou -> não envia
+    } else {
+        txtEmail.innerHTML = 'E-mail válido!';
+        txtEmail.style.color = 'green';
+        campoEmail.style.border = '2px solid green';
+    }
+
+    // Validacão do campo assunto
+    const campoAssunto = document.querySelector('#assunto');
+    const txtAssunto = document.querySelector('#txtAssunto');
+
+    // Assunto precisa ter pelo menos 5 caracteres
+    if (campoAssunto.value.length < 5) {
+        txtAssunto.innerHTML = 'O assunto deve ter pelo menos 5 caracteres.';
+        campoAssunto.focus();
+        txtAssunto.style.color = 'red'; // Mensagem de erro em vermelho
+        campoAssunto.style.border = '2px solid red'; // Destaque em vermelho para indicar erro
+        return; // Sai da função se a validação falhar
+    } else {
+        txtAssunto.innerHTML = 'Assunto válido!';
+        txtAssunto.style.color = 'green'; // Mensagem de sucesso em verde
+        campoAssunto.style.border = '2px solid green'; // Destaque em verde para indicar sucesso
+    }
+
+    // Se passou por todas as validações, enviar o formulário
+    formulario.submit();
+
+});
 
 // Chamar a função getAPIGithub()
 getApiGithub();
