@@ -68,7 +68,7 @@ button {
 :root[data-theme="dark"] {
     color-scheme: dark;
     --bg: #0f0f14;
-    --surface: #383b46;
+    --surface: #f4f4f7;
     --text: #f5e9f1;
     --muted: #c9c3cc;
     --white: var(--bg);
@@ -86,7 +86,7 @@ button {
     :root:not([data-theme="light"]) {
         color-scheme: dark;
         --bg: #0f0f14;
-        --surface: #151821;
+        --surface: #87898e;
         --text: #f5e9f1;
         --muted: #c9c3cc;
         --white: var(--bg);
